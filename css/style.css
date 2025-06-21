@@ -1,0 +1,344 @@
+/* General Styles */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: #f8f8f8;
+  padding: 20px;
+  color: #333;
+}
+
+/* Landing Page */
+#landingPage {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #ffffff;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px;
+}
+
+#landingPage h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
+}
+
+#landingPage p {
+  font-size: 18px;
+  margin-bottom: 30px;
+  max-width: 600px;
+}
+
+#enterStoreBtn {
+  padding: 12px 30px;
+  font-size: 18px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#enterStoreBtn:hover {
+  background: #0056b3;
+}
+
+/* Logo Header */
+header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+header img {
+  width: 250px;
+  height: auto;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px;
+  display: none;
+}
+
+/* Product Search and Filter */
+#searchBar {
+  max-width: 600px;
+  margin: 20px auto;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+#searchInput,
+#categoryFilter {
+  flex: 1;
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  min-width: 200px;
+}
+
+/* Product Grid */
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 280px;
+  padding: 15px;
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.product-image {
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.card h5 {
+  margin: 10px 0;
+  font-size: 18px;
+}
+
+.card p {
+  margin: 5px 0 10px;
+  font-weight: bold;
+}
+
+.card select,
+.card input[type="number"],
+.card button {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.card button {
+  background: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.card button:hover {
+  background: #0056b3;
+}
+
+/* Cart */
+#cartPreview {
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  margin-top: 30px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#cartPreview h3 {
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+#cartItems {
+  list-style: none;
+  padding-left: 0;
+}
+
+#cartItems li {
+  padding: 10px 0;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+#cartItems input[type='number'] {
+  width: 60px;
+  padding: 5px;
+  margin-right: 10px;
+}
+
+.remove-btn {
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+#totalAmount {
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
+  font-size: 18px;
+}
+
+#clearCartBtn,
+#checkoutBtn {
+  display: block;
+  margin: 20px auto;
+  padding: 12px 30px;
+  background: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#clearCartBtn {
+  background: #dc3545;
+}
+
+#checkoutForm {
+  display: none;
+  background: #fff;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#checkoutForm input,
+#checkoutForm textarea {
+  width: 100%;
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+#submitOrder {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#contactLinks {
+  display: none;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#contactLinks a {
+  display: inline-block;
+  margin: 10px;
+  padding: 10px 20px;
+  text-decoration: none;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+}
+
+#telegramLink {
+  background: #0088cc;
+}
+
+#whatsappLink {
+  background: #25D366;
+}
+
+/* Variant Selects */
+.card .variant-select {
+  margin-bottom: 10px;
+  font-size: 15px;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  width: 100%;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card {
+    width: 95%;
+  }
+
+  #cartItems li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #cartItems li div {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5px;
+  }
+
+  #clearCartBtn,
+  #checkoutBtn,
+  #submitOrder {
+    width: 90%;
+    font-size: 16px;
+  }
+
+  #checkoutForm input,
+  #checkoutForm textarea {
+    font-size: 16px;
+  }
+}
+
+/* Product Images */
+.img-1 { background-image: url('/css/imaage/aippod\ pro\ 2.jpg'); }
+.img-2 { background-image: url('/css/imaage/airpod4.jpg'); }
+.img-3 { background-image: url('../imaage/airpods_pro_max.jpg'); }
+.img-4 { background-image: url('../imaage/cologne.jpg'); }
+.img-5 { background-image: url('../imaage/wristwatch.jpg'); }
+.img-6 { background-image: url('../imaage/powerbank.jpg'); }
+.img-7 { background-image: url('../imaage/speaker.jpg'); }
+.img-8 { background-image: url('../imaage/charger_pad.jpg'); }
+.img-9 { background-image: url('../imaage/iphone_case.jpg'); }
+.img-10 { background-image: url('../imaage/headset.jpg'); }
+.img-11 { background-image: url('../imaage/light_bulb.jpg'); }
+.img-12 { background-image: url('../imaage/smart_band.jpg'); }
+.img-13 { background-image: url('../imaage/projector.jpg'); }
+.img-14 { background-image: url('../imaage/mouse.jpg'); }
+.img-15 { background-image: url('../imaage/webcam.jpg'); }
