@@ -203,12 +203,11 @@ window.addEventListener('DOMContentLoaded', () => {
     const address = document.getElementById('address').value;
     const phone = document.getElementById('phone').value;
     const note = document.getElementById('note').value;
-
     const summaryLines = cart.map(item => `- ${item.name}${item.variant ? ' (' + item.variant + ')' : ''} x${item.qty} = $${item.qty * item.price}`);
-    const summary = summaryLines.join('%0A');
+    const summary = summaryLines.join('');
     const total = cart.reduce((sum, item) => sum + (item.qty * item.price), 0);
 
-    const message = `🛒 *Order Summary*%0A${summary}%0A%0A*Total:* $${total}%0A%0A*Customer Details*%0AName: ${name}%0AAddress: ${address}%0APhone: ${phone}%0ANote: ${note}`;
+    const message = `🛒 *Order Summary* ${summary} *Total:* $${total} *Customer Details* Name: ${name} Address: ${address}Phone: ${phone} Note: ${note}`;
 
     document.getElementById('telegramLink').href = `https://t.me/amelia_james_pod?start=${encodeURIComponent(message)}`;
     document.getElementById('whatsappLink').href = `https://wa.me/2349060195764?text=${encodeURIComponent(message)}`;
