@@ -12,6 +12,20 @@ body {
   color: #333;
 }
 
+/* Toast Notification */
+#toast {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #28a745;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  display: none;
+  z-index: 2000;
+}
+
 /* Landing Page */
 #landingPage {
   position: fixed;
