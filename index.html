@@ -70,8 +70,12 @@
   <form id="checkoutForm">
     <h3>Checkout Details</h3>
     <input type="text" id="name" placeholder="Your Full Name" required />
-    <input type="text" id="address" placeholder="Shipping Address" required />
-    <input type="text" id="phone" placeholder="Phone Number" required />
+    <input type="county" id="address" placeholder="country" required />
+    <input type="state" id="phone" placeholder="State" required />
+    <input type="zipcode" id="phone" placeholder="Zip code" required />
+    <input type="address" id="phone" placeholder="shipping address" required />
+    <input type="email" id="phone" placeholder="Email" required />
+    <input type="phone" id="phone" placeholder="Phone Number" required />
     <textarea id="note" placeholder="Additional Note (optional)"></textarea>
     <button type="submit" id="submitOrder">Send Order</button>
   </form>
@@ -93,7 +97,7 @@ const products = [
   { id: 4, name: 'Cologne', price: 150, category: 'cologne', variants: ['Dior Sauvage', 'Bleu de Chanel', 'Creed Aventus', 'Tom Ford Noir'] },
   { id: 5, name: 'Wristwatch', price: 300, category: 'wristwatch', variants: ['Rolex Submariner', 'Apple Watch S8', 'Casio G-Shock', 'Omega Seamaster'] },
   { id: 12, name: 'DJI Camera 3 (Creator Combo)', price: 420, category: 'accessory' },
-  { id: 13, name: 'Dyson Airwrap', price: 550, category: 'dyson' },
+  { id: 13, name: 'Dyson ', price: 550, category: 'dyson' },
   { id: 14, name: 'Hoodie', price: 100, category: 'hoodie', variants: ['Spider Hoodie', 'Hell Star Hoodie', 'Essentials Hoodie', 'Trapstar Hoodie', 'Palm Angels Hoodie', 'VLONE Hoodie', 'Off-White Hoodie'] },
   { id: 15, name: 'Moissanite', price: 220, category: 'moissanite', variants: ['Moissanite Studs', 'Moissanite Necklace', 'Moissanite Ring', 'Moissanite Bracelet', 'Moissanite Watch', 'Moissanite Earrings'] },
   { id: 16, name: 'Sneakers', price: 300, category: 'sneakers', variants: ['Nike Air Force 1', 'Adidas Yeezy', 'Jordan 1', 'New Balance 550', 'Nike Dunk', 'Balenciaga Triple S'] },
@@ -232,7 +236,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     const message = `🛒 *Order Summary*\n${summary}\n*Total:* $${total}\n*Customer Details*\nName: ${name}\nAddress: ${address}\nPhone: ${phone}\nNote: ${note}`;
 
-    document.getElementById('telegramLink').href = `https://t.me/amelia_james_pod?start=${encodeURIComponent(message)}`;
+    document.getElementById('telegramLink').href = `https://t.me/david_air1?start=${encodeURIComponent(message)}`;
     document.getElementById('whatsappLink').href = `https://wa.me/2349060195764?text=${encodeURIComponent(message)}`;
 
     document.getElementById('contactLinks').style.display = 'block';
