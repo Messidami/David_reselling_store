@@ -7,9 +7,10 @@
 }
 
 body {
-  background-color: #f8f8f8;
+  background-color: #f4f6f8;
   padding: 20px;
   color: #333;
+  background: linear-gradient(to right, #ffffff, #f0f0f0);
 }
 
 /* Toast Notification */
@@ -33,7 +34,9 @@ body {
   left: 0;
   width: 100%;
   height: 100vh;
-  background: #ffffff;
+  background: linear-gradient(270deg, #00c9ff, #92fe9d);
+  background-size: 400% 400%;
+  animation: animateBg 10s ease infinite;
   z-index: 1000;
   display: flex;
   flex-direction: column;
@@ -43,15 +46,23 @@ body {
   padding: 40px;
 }
 
+@keyframes animateBg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
 #landingPage h1 {
   font-size: 40px;
   margin-bottom: 20px;
+  color: #fff;
 }
 
 #landingPage p {
   font-size: 18px;
   margin-bottom: 30px;
   max-width: 600px;
+  color: #fdfdfd;
 }
 
 #enterStoreBtn {
@@ -85,6 +96,9 @@ header img {
   margin: 0 auto;
   padding: 10px;
   display: none;
+  background: url('/css/imaage/9c53bccc-2928-4b10-bd46-42984836057e.png') no-repeat center center/cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 /* Product Search and Filter */
@@ -341,18 +355,23 @@ header img {
 }
 
 /* Product Images */
-.img-1 { background-image: url('/css/imaage/aippod pro 2.jpg'); }
+.img-1 { background-image: url('/css/imaage/airpodpro2.jpg'); }
 .img-2 { background-image: url('/css/imaage/airpod4.jpg'); }
-.img-3 { background-image: url('../imaage/airpods_pro_max.jpg'); }
-.img-4 { background-image: url('../imaage/cologne.jpg'); }
-.img-5 { background-image: url('../imaage/wristwatch.jpg'); }
-.img-6 { background-image: url('../imaage/powerbank.jpg'); }
-.img-7 { background-image: url('../imaage/speaker.jpg'); }
-.img-8 { background-image: url('../imaage/charger_pad.jpg'); }
-.img-9 { background-image: url('../imaage/iphone_case.jpg'); }
-.img-10 { background-image: url('../imaage/headset.jpg'); }
-.img-11 { background-image: url('../imaage/light_bulb.jpg'); }
-.img-12 { background-image: url('../imaage/smart_band.jpg'); }
-.img-13 { background-image: url('../imaage/projector.jpg'); }
-.img-14 { background-image: url('../imaage/mouse.jpg'); }
-.img-15 { background-image: url('../imaage/webcam.jpg'); }
+.img-3 { background-image: url('/css/imaage/airpods_pro_max.jpg'); }
+.img-4 { background-image: url('/css/imaage/cologne.jpg'); }
+.img-5 { background-image: url('/css/imaage/whristwatch.jpg'); }
+.img-10 { background-image: url('/css/imaage/miniprojector.jpg'); }
+.img-11 { background-image: url('/css/imaage/wirelessmouse.jpg'); }
+.img-12 { background-image: url('/css/imaage/dji.jpg'); }
+.img-13 { background-image: url('/css/imaage/dysonairwrap.jpg'); }
+.img-14 { background-image: url('/css/imaage/hoodies.jpg'); }
+.img-15 { background-image: url('/css/imaage/moissanite.jpg'); }
+.img-16 { background-image: url('/css/imaage/sneakers.jpg'); }
+.img-17 { background-image: url('/css/imaage/ps5.jpg'); }
+.img-18 { background-image: url('/css/imaage/playstationportal.jpg'); }
+.img-19 { background-image: url('/css/imaage/xbox.jpg'); }
+.img-9 { background-image: url('/css/imaage/smartband.jpg'); }
+.img-6 { background-image: url('/css/imaage/wirelesscharger.jpg'); }
+.img-7 { background-image: url('/css/imaage/gaming\ head\ set.jpg'); }
+.img-8 { background-image: url('/css/imaage/smartbulb.jpg'); }
+
