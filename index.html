@@ -18,8 +18,6 @@
 </head>
 <body>
 
-<!-- Toast Notification -->
-<div id="toast">Product added to cart!</div>
 
 <!-- Landing Page -->
 <div id="landingPage">
@@ -29,10 +27,9 @@
 </div>
 
 <!-- Store Main Content -->
-<div class="container">
-
+<div class="container" style="display: none;">
   <header>
-    <img src="css/imaage/ChatGPT Image Jun 15, 2025, 06_52_05 PM.png" alt="David Resell Store Logo">
+    <img src="css/imaage/ChatGPT Image Jun 15, 2025, 06_52_05 PM.png" alt="David Resell Store Logo" style="max-width: 200px;">
   </header>
 
   <section id="landing">
@@ -40,6 +37,7 @@
     <p>All items listed are tested, verified, and recommended for reselling.</p>
   </section>
 
+  <!-- Search + Filter -->
   <div id="searchBar">
     <input type="text" id="searchInput" placeholder="Search products..." />
     <select id="categoryFilter">
@@ -48,7 +46,7 @@
       <option value="cologne">Cologne</option>
       <option value="wristwatch">Wristwatch</option>
       <option value="accessory">Accessories</option>
-      <option value="dyson">Dyson</option>
+      <option value="cologne">Dyson</option>
       <option value="hoodie">Hoodies</option>
       <option value="moissanite">Moissanite</option>
       <option value="sneakers">Sneakers</option>
@@ -56,8 +54,10 @@
     </select>
   </div>
 
+  <!-- Product Grid -->
   <div class="grid" id="productContainer"></div>
 
+  <!-- Cart Preview -->
   <div id="cartPreview">
     <h3>Your Cart</h3>
     <ul id="cartItems"></ul>
@@ -67,60 +67,115 @@
 
   <button id="checkoutBtn">Proceed to Checkout</button>
 
-  <form id="checkoutForm">
+  <!-- Checkout Form -->
+  <form id="checkoutForm" style="display: none;">
     <h3>Checkout Details</h3>
     <input type="text" id="name" placeholder="Your Full Name" required />
-    <input type="county" id="address" placeholder="country" required />
-    <input type="state" id="phone" placeholder="State" required />
-    <input type="zipcode" id="phone" placeholder="Zip code" required />
-    <input type="address" id="phone" placeholder="shipping address" required />
-    <input type="email" id="phone" placeholder="Email" required />
-    <input type="phone" id="phone" placeholder="Phone Number" required />
+    <input type="text" id="country" placeholder="Country" required />
+    <input type="text" id="state" placeholder="State" required />
+    <input type="text" id="zipcode" placeholder="Zip code" required />
+    <input type="text" id="address" placeholder="Shipping Address" required />
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="tel" id="phone" placeholder="Phone Number" required />
     <textarea id="note" placeholder="Additional Note (optional)"></textarea>
     <button type="submit" id="submitOrder">Send Order</button>
   </form>
 
-  <div id="contactLinks">
+  <!-- Contact Links -->
+  <div id="contactLinks" style="display: none;">
     <p>Choose where to send your order:</p>
     <a id="telegramLink" href="#" target="_blank">Send via Telegram</a>
     <a id="whatsappLink" href="#" target="_blank">Send via WhatsApp</a>
   </div>
+
+  <!-- Toast Message -->
+  <div id="toast" ></div>
 </div>
 
 
 <script>
 
+const sizeOptions = ['S', 'M', 'L', 'XL', 'XXL'];
+const sneakerSizes = ['39', '40', '41', '42', '43', '44', '45', '46'];
+
+const variantPrices = {
+  'iPhone 11': 85,
+  'iPhone 11 Pro': 88,
+  'iPhone 12': 90,
+  'iPhone 12 Pro': 93,
+  'iPhone 13': 95,
+  'iPhone 13 Pro': 97,
+  'iPhone 14': 102,
+  'iPhone 14 Pro': 110,
+  'iPhone 15': 130,
+  'iPhone 15 Pro': 200,
+  'iPhone 15 Pro Max': 230,
+  'iPhone 16 ': 220,
+  'iPhone 16 Pro ': 250,
+  'iPhone 16 Pro Max': 295,
+  'Dior Sauvage': 30,
+  'Bleu de Chanel': 25,
+  'Creed Aventus': 20,
+  'Tom Ford Noir': 30,
+  'Rolex Submariner': 30,
+  'Apple Watch S8': 150,
+  'Casio G-Shock': 100,
+  'Omega Seamaster': 80,
+  'Spider Hoodie': 30,
+  'Hell Star Hoodie': 32,
+  'Essentials Hoodie': 45,
+  'Trapstar Hoodie': 35,
+  'Palm Angels Hoodie': 40,
+  'VLONE Hoodie': 30,
+  'Off-White Hoodie': 300,
+  'air dryer': 70,
+  'vaccum cleaner': 180,
+  'airwrap': 250,
+  'Moissanite Studs': 50,
+  'Moissanite Necklace': 30,
+  'Moissanite Ring': 25,
+  'Moissanite Bracelet': 28,
+  'Moissanite Watch': 35,
+  'Moissanite Earrings': 22,
+  'Nike Air Force 1': 30,
+  'Adidas Yeezy': 30,
+  'Jordan 1': 20,
+  'New Balance 550': 30,
+  'Nike Dunk': 30,
+  'Balenciaga Triple S': 40
+};
+
 const products = [
-  { id: 1, name: 'AirPods Pro 2', price: 200, category: 'airpods' },
-  { id: 2, name: 'AirPods 4', price: 180, category: 'airpods' },
-  { id: 3, name: 'AirPods Pro Max', price: 250, category: 'airpods' },
-  { id: 4, name: 'Cologne', price: 150, category: 'cologne', variants: ['Dior Sauvage', 'Bleu de Chanel', 'Creed Aventus', 'Tom Ford Noir'] },
-  { id: 5, name: 'Wristwatch', price: 300, category: 'wristwatch', variants: ['Rolex Submariner', 'Apple Watch S8', 'Casio G-Shock', 'Omega Seamaster'] },
-  { id: 12, name: 'DJI Camera 3 (Creator Combo)', price: 420, category: 'accessory' },
-  { id: 13, name: 'Dyson ', price: 550, category: 'dyson' },
-  { id: 14, name: 'Hoodie', price: 100, category: 'hoodie', variants: ['Spider Hoodie', 'Hell Star Hoodie', 'Essentials Hoodie', 'Trapstar Hoodie', 'Palm Angels Hoodie', 'VLONE Hoodie', 'Off-White Hoodie'] },
-  { id: 15, name: 'Moissanite', price: 220, category: 'moissanite', variants: ['Moissanite Studs', 'Moissanite Necklace', 'Moissanite Ring', 'Moissanite Bracelet', 'Moissanite Watch', 'Moissanite Earrings'] },
-  { id: 16, name: 'Sneakers', price: 300, category: 'sneakers', variants: ['Nike Air Force 1', 'Adidas Yeezy', 'Jordan 1', 'New Balance 550', 'Nike Dunk', 'Balenciaga Triple S'] },
-  { id: 17, name: 'PS5', price: 600, category: 'console' },
-  { id: 18, name: 'PlayStation', price: 500, category: 'console' },
-  { id: 19, name: 'Xbox', price: 450, category: 'console' },
+  { id: 1, name: 'AirPods Pro 2', price: 20, category: 'airpods' },
+  { id: 2, name: 'AirPods 4', price: 25, category: 'airpods' },
+  { id: 3, name: 'AirPods Pro Max', price: 75, category: 'airpods' },
+  { id: 13, name: 'Dyson', price: 150, category: 'cologne', variants: ['air dryer', 'vaccum cleaner' ,'airwrap'] },
+  { id: 4, name: 'Cologne', price: 30, category: 'cologne', variants: ['Dior Sauvage', 'Bleu de Chanel', 'Creed Aventus', 'Tom Ford Noir'] },
+  { id: 5, name: 'Wristwatch', price: 30, category: 'wristwatch', variants: ['Rolex Submariner', 'Apple Watch S8', 'Casio G-Shock', 'Omega Seamaster'] },
+  { id: 12, name: 'DJI Camera 3 (Creator Combo)', price: 320, category: 'accessory' },
+  { id: 14, name: 'Hoodie', price: 35, category: 'hoodie', variants: ['Spider Hoodie', 'Hell Star Hoodie', 'Essentials Hoodie', 'Trapstar Hoodie', 'Palm Angels Hoodie', 'VLONE Hoodie', 'Off-White Hoodie'] },
+  { id: 15, name: 'Moissanite', price: 80, category: 'moissanite', variants: ['Moissanite Studs', 'Moissanite Necklace', 'Moissanite Ring', 'Moissanite Bracelet', 'Moissanite Watch', 'Moissanite Earrings'] },
+  { id: 16, name: 'Sneakers', price: 70, category: 'sneakers', variants: ['Nike Air Force 1', 'Adidas Yeezy', 'Jordan 1', 'New Balance 550', 'Nike Dunk', 'Balenciaga Triple S'] },
+  { id: 17, name: 'PS5', price: 220, category: 'console' },
+  { id: 18, name: 'PlayStation', price: 165, category: 'console' },
+  { id: 19, name: 'Xbox', price: 76, category: 'console' },
   { id: 6, name: 'Wireless Charger (3 in 1)', price: 45, category: 'accessory' },
-  { id: 7, name: 'Gaming Headset', price: 80, category: 'accessory' },
+  { id: 7, name: 'Gaming Headset', price: 60, category: 'accessory' },
   { id: 8, name: 'Smart Light Bulb', price: 25, category: 'accessory' },
   { id: 9, name: 'Smart Band', price: 55, category: 'accessory' },
   { id: 10, name: 'Mini Projector', price: 110, category: 'accessory' },
   { id: 11, name: 'Wireless Mouse', price: 35, category: 'accessory' },
+  { id: 20, name: 'iPhone', price: 200, category: 'phone', variants: [
+    'iPhone 11', 'iPhone 11 Pro', 'iPhone 12', 'iPhone 12 Pro', 'iPhone 13', 'iPhone 13 Pro',
+    'iPhone 14', 'iPhone 14 Pro', 'iPhone 15', 'iPhone 15 Pro', 'iPhone 15 Pro Max'] },
 ];
-
 const cart = [];
 
 function showToast(message) {
   const toast = document.getElementById('toast');
   toast.textContent = message;
   toast.style.display = 'block';
-  setTimeout(() => {
-    toast.style.display = 'none';
-  }, 3000);
+  setTimeout(() => toast.style.display = 'none', 3000);
 }
 
 function renderProducts(filterText = '', category = '') {
@@ -130,19 +185,34 @@ function renderProducts(filterText = '', category = '') {
     p.name.toLowerCase().includes(filterText.toLowerCase()) &&
     (category === '' || p.category === category)
   );
+
   filtered.forEach(product => {
     const card = document.createElement('div');
     card.className = 'card';
 
     let variantHTML = '';
+    let defaultVariant = product.variants ? product.variants[0] : '';
+    let initialPrice = variantPrices[defaultVariant] || product.price;
+
     if (product.variants) {
-      variantHTML = `<select class="variant-select" id="variant-${product.id}">${product.variants.map(opt => `<option value="${opt}">${opt}</option>`).join('')}</select>`;
+      variantHTML += `<select class="variant-select" id="variant-${product.id}" onchange="updateVariantPrice(${product.id})">`;
+      product.variants.forEach(opt => {
+        variantHTML += `<option value="${opt}">${opt}</option>`;
+      });
+      variantHTML += `</select>`;
+
+      if (product.category === 'hoodie') {
+        variantHTML += `<select class="variant-select" id="size-${product.id}">${sizeOptions.map(size => `<option value="${size}">${size}</option>`).join('')}</select>`;
+      }
+      if (product.category === 'sneakers') {
+        variantHTML += `<select class="variant-select" id="size-${product.id}">${sneakerSizes.map(size => `<option value="${size}">${size}</option>`).join('')}</select>`;
+      }
     }
 
     card.innerHTML = `
       <div class="product-image img-${product.id}"></div>
       <h5>${product.name}</h5>
-      <p>$${product.price}</p>
+      <p>Price: $<span id="price-${product.id}">${initialPrice}</span></p>
       ${variantHTML}
       <input type="number" min="1" value="1" id="qty-${product.id}" />
       <button onclick="addToCart(${product.id})">Add to Cart</button>
@@ -151,20 +221,36 @@ function renderProducts(filterText = '', category = '') {
   });
 }
 
+function updateVariantPrice(productId) {
+  const variantSelect = document.getElementById(`variant-${productId}`);
+  const selectedVariant = variantSelect.value;
+  const newPrice = variantPrices[selectedVariant] || 0;
+  document.getElementById(`price-${productId}`).textContent = newPrice;
+}
+
 function addToCart(productId) {
   const product = products.find(p => p.id === productId);
   const qty = parseInt(document.getElementById(`qty-${productId}`).value);
-  let variant = '';
   const variantSelect = document.getElementById(`variant-${productId}`);
+  const sizeSelect = document.getElementById(`size-${productId}`);
+
+  let variant = '';
+  let size = '';
   if (variantSelect) variant = variantSelect.value;
-  const existing = cart.find(item => item.id === productId && item.variant === variant);
+  if (sizeSelect) size = sizeSelect.value;
+
+  const selectedVariant = `${variant}${size ? ' - Size ' + size : ''}`;
+  const price = variantPrices[variant] || product.price;
+  const existing = cart.find(item => item.id === productId && item.variant === selectedVariant);
+
   if (existing) {
     existing.qty += qty;
   } else {
-    cart.push({ ...product, qty, variant });
+    cart.push({ ...product, price, qty, variant: selectedVariant });
   }
+
   updateCartPreview();
-  showToast(`${product.name}${variant ? ' - ' + variant : ''} added to cart`);
+  showToast(`${product.name}${selectedVariant ? ' - ' + selectedVariant : ''} added to cart`);
 }
 
 function updateCartPreview() {
@@ -172,15 +258,17 @@ function updateCartPreview() {
   const totalAmount = document.getElementById('totalAmount');
   cartItems.innerHTML = '';
   let total = 0;
+
   if (cart.length === 0) {
     cartItems.innerHTML = '<li>Your cart is empty.</li>';
     totalAmount.textContent = '';
     return;
   }
+
   cart.forEach((item, index) => {
-    const li = document.createElement('li');
     const itemTotal = item.qty * item.price;
     total += itemTotal;
+    const li = document.createElement('li');
     li.innerHTML = `
       <span>${item.name}${item.variant ? ' - ' + item.variant : ''}</span>
       <div>
@@ -191,6 +279,7 @@ function updateCartPreview() {
     `;
     cartItems.appendChild(li);
   });
+
   totalAmount.textContent = `Total: $${total}`;
 }
 
@@ -230,7 +319,9 @@ window.addEventListener('DOMContentLoaded', () => {
     const phone = document.getElementById('phone').value;
     const note = document.getElementById('note').value;
 
-    const summaryLines = cart.map(item => `- ${item.name}${item.variant ? ' (' + item.variant + ')' : ''} x${item.qty} = $${item.qty * item.price}`);
+    const summaryLines = cart.map(item =>
+      `- ${item.name}${item.variant ? ' (' + item.variant + ')' : ''} x${item.qty} = $${item.qty * item.price}`
+    );
     const summary = summaryLines.join('\n');
     const total = cart.reduce((sum, item) => sum + (item.qty * item.price), 0);
 
