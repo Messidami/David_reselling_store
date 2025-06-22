@@ -8,8 +8,8 @@
 
 body {
   padding: 20px;
-    background: url('/css/imaage/9c53bccc-2928-4b10-bd46-42984836057e.png') no-repeat center center/cover;
-  color: #333;
+    background: url('/css/imaage/9c53bccc-2928-4b10-bd46-42984836057e.png') repeat center center/cover;
+  color: black;
 }
 
 /* Toast Notification */
